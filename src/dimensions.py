@@ -44,6 +44,7 @@ if __name__ == '__main__':
 
     for url in urls:
         metadata_box = extract_metadata(url)
+        print(metadata_box)
         info = get_dictionary_by_key_value(metadata_box, '@type', 'Dataset')
 
         try:
@@ -64,6 +65,8 @@ if __name__ == '__main__':
                 has_doi.append('N')
         except:
             has_doi.append('Unknown')
+
+    print(license)
 
     type_count = Counter(datatype)
     types = pd.DataFrame.from_dict(type_count, orient='index')

@@ -9,7 +9,7 @@ if __name__ == "__main__":
 
     cur = con.cursor()
 
-    list_sources = cur.execute("select distinct sourceDOI from interactions where (interactionTypeName == 'pollinates' or interactionTypeName == 'visitsFlowersOf' or interactionTypeName == 'pollinatedBy' )")
+    list_sources = cur.execute("select distinct sourceDOI from interactions limit 30")
     
 
     results = pd.DataFrame(columns=['hasDOI','license','datatype'])
@@ -38,7 +38,7 @@ if __name__ == "__main__":
 
 
         except Exception as e:
-            print(row[0])
+            #print(row[0])
             results = results.append({'hasDOI' : 'False', 'license' : 'unknown', 'datatype' : 'unknown'}, ignore_index=True)
 
     print(results)
